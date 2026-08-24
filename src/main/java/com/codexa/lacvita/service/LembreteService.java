@@ -14,9 +14,11 @@ import com.codexa.lacvita.repository.LembreteRepository;
 public class LembreteService {
 
     private final LembreteRepository repository;
+    private final NutrizeService nutrizeService;
 
-    public LembreteService(LembreteRepository repository) {
+    public LembreteService(LembreteRepository repository, NutrizeService nutrizeService) {
         this.repository = repository;
+        this.nutrizeService = nutrizeService;
     }
 
     public Lembrete criar(Nutrize nutrize, TipoLembrete tipo, String titulo, String mensagem) {
@@ -27,6 +29,11 @@ public class LembreteService {
                 .mensagem(mensagem)
                 .build();
         return repository.save(lembrete);
+    }
+
+    public Lembrete criar(Long nutrizeId, TipoLembrete tipo, String titulo, String mensagem) {
+        Nutrize nutrize = nutrizeService.findByIdOrThrow(nutrizeId);
+        return criar(nutrize, tipo, titulo, mensagem);
     }
 
     public Lembrete marcarComoLido(Long id) {
