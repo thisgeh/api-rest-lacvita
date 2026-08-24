@@ -28,7 +28,7 @@ docker run -d \
     mysql
 ```
 
-3.
+3. 
 ```bash
 ./mvnw spring-boot:run
 ```
@@ -36,6 +36,58 @@ docker run -d \
 4. A API sobe em `http://localhost:8080`, com todas as rotas sob o prefixo `api/v1`.
 
 5. Para parar: `Ctrl+C` na aplicação e `docker stop mysql`
+
+## Execução com Docker
+
+A imagem da aplicação está publicada no Docker Hub.
+
+### 1. Baixar a imagem
+
+```bash
+docker pull thisgeh/lacvita-api:1.0
+```
+
+### 2. Subir o banco MySQL 
+
+```bash
+docker run -d \
+    --name mysql \
+    --rm \
+    -e MYSQL_ROOT_PASSWORD=root_pwd \
+    -e MYSQL_USER=new_user \
+    -e MYSQL_PASSWORD=my_pwd \
+    -e MYSQL_DATABASE=lacvita \
+    -p 3306:3306 \
+    mysql
+```
+
+### 3. Rodar o container da API
+
+```bash
+docker run \
+  -p 8080:8080 \
+  -e DB_SERVER_URL=host.docker.internal \
+  -e DB_SERVER_PORT=3306 \
+  -e DB_SCHEMA=lacvita \
+  -e DB_USER=new_user \
+  -e DB_PWD=my_pwd \
+  -e SPRING_PROFILES_ACTIVE=dev \
+  thisgeh/lacvita-api:1.0
+```
+
+> A API fica disponível em `http://localhost:8080`.
+
+> Repositório no Docker Hub: `https://hub.docker.com/r/thisgeh/lacvita-api`
+
+### Comandos úteis
+
+```bash
+docker ps                    # containers em execução
+docker ps -a                 # todos os containers
+docker stop <container_id>   # parar um container
+docker rm <container_id>     # remover um container
+docker images                # listar imagens
+```
 
 
 ## Endpoints
