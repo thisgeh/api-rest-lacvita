@@ -44,7 +44,7 @@ A imagem da aplicação está publicada no Docker Hub.
 ### 1. Baixar a imagem
 
 ```bash
-docker pull thisgeh/lacvita-api:1.0
+docker pull thisgeh/lacvita-api:1.1
 ```
 
 ### 2. Subir o banco MySQL 
@@ -72,7 +72,7 @@ docker run \
   -e DB_USER=new_user \
   -e DB_PWD=my_pwd \
   -e SPRING_PROFILES_ACTIVE=dev \
-  thisgeh/lacvita-api:1.0
+  thisgeh/lacvita-api:1.1
 ```
 
 > A API fica disponível em `http://localhost:8080`.

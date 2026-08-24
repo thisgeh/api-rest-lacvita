@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codexa.lacvita.dto.qualidade.QualidadeLeiteCreateRequest;
 import com.codexa.lacvita.dto.qualidade.QualidadeLeiteMapper;
 import com.codexa.lacvita.dto.qualidade.QualidadeLeiteResponse;
+import com.codexa.lacvita.dto.qualidade.QualidadeLeiteUpdateRequest;
 import com.codexa.lacvita.model.QualidadeLeite;
 import com.codexa.lacvita.service.QualidadeLeiteService;
 
@@ -43,5 +45,13 @@ public class QualidadeLeiteController {
     @GetMapping("/coleta/{coletaId}")
     public ResponseEntity<QualidadeLeiteResponse> findByColetaId(@PathVariable Long coletaId) {
         return ResponseEntity.ok(mapper.toDto(service.findByColetaIdOrThrow(coletaId)));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<QualidadeLeiteResponse> update(@PathVariable Long id,
+            @Valid @RequestBody QualidadeLeiteUpdateRequest dto) {
+        QualidadeLeite existente = service.findByIdOrThrow(id);
+        mapper.updateEntityFromDto(dto, existente);
+        return ResponseEntity.ok(mapper.toDto(service.update(existente)));
     }
 }

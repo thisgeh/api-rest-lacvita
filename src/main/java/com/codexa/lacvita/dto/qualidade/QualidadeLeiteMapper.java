@@ -26,6 +26,10 @@ public class QualidadeLeiteMapper {
         return modelMapper.map(dto, QualidadeLeite.class);
     }
 
+    public void updateEntityFromDto(QualidadeLeiteUpdateRequest dto, QualidadeLeite entity) {
+        modelMapper.map(dto, entity);
+    }
+
     public QualidadeLeiteResponse toDto(QualidadeLeite entity) {
         QualidadeLeiteResponse response = modelMapper.map(entity, QualidadeLeiteResponse.class);
         response.setColetaId(entity.getColeta() != null ? entity.getColeta().getId() : null);

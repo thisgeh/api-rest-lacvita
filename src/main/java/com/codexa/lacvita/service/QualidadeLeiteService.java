@@ -1,5 +1,7 @@
 package com.codexa.lacvita.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Service;
 
 import com.codexa.lacvita.exception.BusinessException;
@@ -27,6 +29,11 @@ public class QualidadeLeiteService {
         }
 
         qualidadeLeite.setColeta(coleta);
+        return repository.save(qualidadeLeite);
+    }
+
+    public QualidadeLeite update(QualidadeLeite qualidadeLeite) {
+        qualidadeLeite.setDataAnalise(LocalDateTime.now());
         return repository.save(qualidadeLeite);
     }
 
