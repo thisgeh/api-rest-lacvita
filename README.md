@@ -2,6 +2,16 @@
 
 API REST para gestão de doação de leite materno, conectando **nutrizes** (doadoras) a **pontos de coleta** e bancos de leite humano. A solução cobre todo o fluxo: cadastro da doadora, endereço para coleta em casa, envio e aprovação de documentos de saúde (exames), cadastro de pontos de coleta, agendamento de doações (em casa ou entrega presencial), registro da coleta realizada, controle de qualidade do leite recebido, feedback da doadora e lembretes/notificações.
 
+## Equipe CODEXA
+
+| RM | Integrante |
+|---|---|
+| RM559049 | Anaí Villca Rojas |
+| RM558820 | Geisa Rodrigues Santos |
+| RM558864 | Isaque Santana Paixão |
+| RM555733 | Karla Louise Famula de Melo |
+| RM558937 | Matheus Soares Pereira |
+
 ## Stack
 
 - Java 21 + Spring Boot 4.1.1
